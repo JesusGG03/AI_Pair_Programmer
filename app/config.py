@@ -16,7 +16,7 @@ class AppConfig:
 
     # --- LLM/Ollama Settings (Example Defaults) ---
     OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
-    LLM_MODEL_NAME = os.getenv("LLM_MODEL_NAME", "codellama:7b") # Use a fast, local model for testing
+    LLM_MODEL_NAME = os.getenv("LLM_MODEL_NAME", "deepseek-coder:6.7b-instruct") # Use a fast, local model for testing
 
     # --- Audio Settings (STT/TTS) ---
     # Placeholder for configuration related to Whisper and Coqui
