@@ -35,6 +35,22 @@ class stt_service:
         logger.info(f"Loading Whisper model: {model_size}...")
 
         try:
-            pass
-        except:
-            pass
+            self.model = whisper.load_model(model_size)
+            logger.info("Whisper gmodel loaded successfully.")
+
+        except Exception as e:
+            logger.error(f"Failed to load whisper Model '{model_size}'. Error: {e}", exc_info=True)
+            raise
+
+        self.samplerate = 16000 # kHz frequency for Whisper
+        self.channels = 1
+
+        # Voice Activity Detection Parameters (VAD)
+        # Conver silence threshold (Db) to a linear amplitude scale
+        self.silence_threshold = 10 ** (silence_threshold_db / 20)
+        self.silence_duration = silence_duration_sec
+
+        # Calculate how many chunks are silent
+        self.chunks_per_second = 5 # Processing audio 1/5th (200ms)
+        
+        self.silent_chunks_needed = self.silence_duration * self.chunks_per_second
