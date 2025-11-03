@@ -40,7 +40,27 @@ class SSTService:
         
         This loads the Whisper model into memory.
         """
-        pass
+
+        # Assigning the mdoel and sample rate from config
+        self.model_name = CONFIG.WHISPER_MODEL
+        self.samplerate = CONFIG.AUDIO_SAMPLE_RATE
+
+        # Chunk sizes for VAD
+        self.chunk_duration = .5 # 500ms Chunk
+        self.chunk_size = int(self.samplerate * self.chunk_duration) # 8000 samples
+
+        # Calculations for silent chunks needed
+        self.silent_chunks_needed = int(VAD_SILENCE_DURATION / self.chunk_duration)
+
+        # Loading STT model
+        try:
+            logger.info(f"Loading Whisper model: {self.model_name}")
+            self.model = whisper.load_model(self.model_name)
+            logger.info("Whisper model loaded successfully")
+        except:
+            logger.error(f"Failed to load whisper model: {e}")
+            self.model = None
+
 
     def _record_audio_with_vad(self) -> np.ndarray | None:
         """
