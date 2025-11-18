@@ -6,8 +6,6 @@ venv39/
 
 app/__pychache
 
-app/infastructure/__pycache__/ollama_service.cpython-313.pyc
+
 app/__pycache__/config.cpython-313.pyc
 
-app/infastructure/__pycache__/stt_service.cpython-313.pyc
-app/infastructure/__pycache__/tts_service.cpython-313.pyc
