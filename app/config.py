@@ -22,7 +22,9 @@ class AppConfig:
     # Placeholder for configuration related to Whisper and Coqui
     WHISPER_MODEL = os.getenv("WHISPER_MODEL", "base.en")
     AUDIO_SAMPLE_RATE = 16000 # Standard for speech processing
-    TTS_VOICE_NAME = os.getenv("TTS_VOICE_NAME", "default_voice")
+
+    TTS_MODEL_NAME = os.getenv("TTS_MODEL_NAME", "tts_models/en/vctk/vits")
+    TTS_VOICE_NAME = os.getenv("TTS_VOICE_NAME", "p225") # Default VCTK speaker
 
 
 # Instantiate the configuration
